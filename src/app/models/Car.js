@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const CarSchema = new mongoose.Schema({
+  year: {
+    type: Number,
+    required: true,
+  },
   make: {
     type: String,
     required: true,
@@ -9,9 +13,33 @@ const CarSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  year: {
+  mileage: {
     type: Number,
     required: true,
+  },
+  engine: {
+    type: String,
+    required: false,
+    },
+  transmission: {
+    type: String,
+    required: false,
+    },
+  fuelType: {
+    type: String,
+    required: false,
+  },
+  exteriorColor: {
+    type: String,
+    required: false,
+  },
+  interiorColor: {
+    type: String,
+    required: false,
+  },
+  imagesURL: {
+    type: String,
+    required: false,
   },
   price: {
     type: Number,

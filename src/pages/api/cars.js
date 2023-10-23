@@ -23,9 +23,37 @@ export default async function handler(req, res) {
         res.status(400).json({ success: false });
       }
       break;
-    default:
+    case "PUT":
+      try {
+        const car = await Car.findByIdAndUpdate(req.body.id, req.body, {
+          new: true,
+          runValidators: true,
+        });
+        if (!car) {
+          return res
+            .status(404)
+            .json({ success: false, message: "Car not found" });
+        }
+        res.status(200).json({ success: true, data: car });
+      } catch (error) {
         res.status(400).json({ success: false });
-        break;
-    // Handle other methods like GET, PUT, DELETE
+      }
+      break;
+    case "DELETE":
+      try {
+        const deletedCar = await Car.deleteOne({ _id: req.body.id });
+        if (!deletedCar.deletedCount) {
+          return res
+            .status(404)
+            .json({ success: false, message: "Car not found" });
+        }
+        res.status(200).json({ success: true, data: {} });
+      } catch (error) {
+        res.status(400).json({ success: false });
+      }
+      break;
+    default:
+      res.status(400).json({ success: false });
+      break;
   }
 }

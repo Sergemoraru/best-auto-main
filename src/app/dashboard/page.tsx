@@ -74,7 +74,7 @@ function Dashboard() {
 
 
   return (
-    <div>
+    <div className="relative">
       <div className="car-list mt-4 space-y-4">
         {cars.map((car) => (
           <div
@@ -109,152 +109,172 @@ function Dashboard() {
           </div>
         ))}
       </div>
-      <div className="min-h-screen bg-gray-100 p-6 flex items-start justify-end">
+      <div className="min-h-screen bg-gray-100 p-6 flex items-center justify-center">
         <button
           onClick={() => setShowForm(!showForm)}
-          className="mb-4 bg-slate-600 text-white p-2 rounded"
+          className="absolute top-6 right-6 bg-slate-600 text-white p-2 rounded"
         >
           {showForm ? "Hide" : "Add Car"}
         </button>
+        <button
+          onClick={() => setShowForm(false)}
+          className="absolute top-2 right-2 text-slate-600 hover:text-slate-800 text-2xl"
+        >
+          &times;
+        </button>
+
         {showForm && (
-          <div className="bg-white p-8 rounded-lg shadow-md w-96">
-            <h1 className="text-2xl font-bold mb-4 text-slate-800">
-              Add New Car
-            </h1>
-            <form onSubmit={handleSubmit}>
-              <select
-                value={formData.year}
-                onChange={(e) =>
-                  setFormData({ ...formData, year: e.target.value })
-                }
-                className="mb-4 w-full p-2 border rounded text-slate-800"
-              >
-                <option value="" disabled>
-                  Select Year
-                </option>
-                {
-                  // Generate options for each year from 1990 to 2025
-                  Array.from({ length: 36 }, (_, i) => 1990 + i).map((year) => (
-                    <option key={year} value={year}>
-                      {year}
+          <>
+            <div className="fixed inset-0 bg-black opacity-50 z-40"></div>
+            <div className="fixed inset-0 flex items-center justify-center z-50">
+              <div className="bg-white p-8 rounded-lg shadow-md w-96">
+                <h1 className="text-2xl font-bold mb-4 text-slate-800">
+                  Add New Car
+                </h1>
+                <form onSubmit={handleSubmit}>
+                  <select
+                    value={formData.year}
+                    onChange={(e) =>
+                      setFormData({ ...formData, year: e.target.value })
+                    }
+                    className="mb-4 w-full p-2 border rounded text-slate-800"
+                  >
+                    <option value="" disabled>
+                      Select Year
                     </option>
-                  ))
-                }
-              </select>
-              <input
-                type="text"
-                placeholder="Make"
-                value={formData.make}
-                onChange={(e) =>
-                  setFormData({ ...formData, make: e.target.value })
-                }
-                className="mb-4 w-full p-2 border rounded text-slate-800"
-              />
-              <input
-                type="text"
-                placeholder="Model"
-                value={formData.model}
-                onChange={(e) =>
-                  setFormData({ ...formData, model: e.target.value })
-                }
-                className="mb-4 w-full p-2 border rounded text-slate-800"
-              />
-              <input
-                type="text"
-                placeholder="Mileage"
-                value={formData.mileage}
-                onChange={(e) =>
-                  setFormData({ ...formData, mileage: e.target.value })
-                }
-                className="mb-4 w-full p-2 border rounded text-slate-800"
-              />
-              <input
-                type="text"
-                placeholder="Engine"
-                value={formData.engine}
-                onChange={(e) =>
-                  setFormData({ ...formData, engine: e.target.value })
-                }
-                className="mb-4 w-full p-2 border rounded text-slate-800"
-              />
-              <input
-                type="text"
-                placeholder="Transmission"
-                value={formData.transmission}
-                onChange={(e) =>
-                  setFormData({ ...formData, transmission: e.target.value })
-                }
-                className="mb-4 w-full p-2 border rounded text-slate-800"
-              />
-              <select
-                value={formData.fuelType}
-                onChange={(e) =>
-                  setFormData({ ...formData, fuelType: e.target.value })
-                }
-                className="mb-4 w-full p-2 border rounded text-slate-800"
-              >
-                <option value="" disabled>
-                  Select Fuel Type
-                </option>
-                <option value="Petrol">Petrol</option>
-                <option value="Diesel">Diesel</option>
-                <option value="Electric">Electric</option>
-                <option value="Hybrid">Hybrid</option>
-                {/* Add more options as needed */}
-              </select>
-              <input
-                type="text"
-                placeholder="Exterior Color"
-                value={formData.exteriorColor}
-                onChange={(e) =>
-                  setFormData({ ...formData, exteriorColor: e.target.value })
-                }
-                className="mb-4 w-full p-2 border rounded text-slate-800"
-              />
-              <input
-                type="text"
-                placeholder="Interior Color"
-                value={formData.interiorColor}
-                onChange={(e) =>
-                  setFormData({ ...formData, interiorColor: e.target.value })
-                }
-                className="mb-4 w-full p-2 border rounded text-slate-800"
-              />
-              <input
-                type="text"
-                placeholder="Images URL"
-                value={formData.imagesUrl}
-                onChange={(e) =>
-                  setFormData({ ...formData, imagesUrl: e.target.value })
-                }
-                className="mb-4 w-full p-2 border rounded text-slate-800"
-              />
-              <input
-                type="number"
-                step="0.01"
-                placeholder="Price"
-                value={formData.price}
-                onChange={(e) =>
-                  setFormData({ ...formData, price: e.target.value })
-                }
-                className="mb-4 w-full p-2 border rounded text-slate-800"
-              />
-              <textarea
-                placeholder="Description"
-                value={formData.description}
-                onChange={(e) =>
-                  setFormData({ ...formData, description: e.target.value })
-                }
-                className="mb-4 w-full p-2 border rounded text-slate-800"
-              ></textarea>
-              <button
-                type="submit"
-                className="w-full bg-blue-500 text-white p-2 rounded"
-              >
-                Add Car
-              </button>
-            </form>
-          </div>
+                    {
+                      // Generate options for each year from 1990 to 2025
+                      Array.from({ length: 36 }, (_, i) => 1990 + i).map(
+                        (year) => (
+                          <option key={year} value={year}>
+                            {year}
+                          </option>
+                        )
+                      )
+                    }
+                  </select>
+                  <input
+                    type="text"
+                    placeholder="Make"
+                    value={formData.make}
+                    onChange={(e) =>
+                      setFormData({ ...formData, make: e.target.value })
+                    }
+                    className="mb-4 w-full p-2 border rounded text-slate-800"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Model"
+                    value={formData.model}
+                    onChange={(e) =>
+                      setFormData({ ...formData, model: e.target.value })
+                    }
+                    className="mb-4 w-full p-2 border rounded text-slate-800"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Mileage"
+                    value={formData.mileage}
+                    onChange={(e) =>
+                      setFormData({ ...formData, mileage: e.target.value })
+                    }
+                    className="mb-4 w-full p-2 border rounded text-slate-800"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Engine"
+                    value={formData.engine}
+                    onChange={(e) =>
+                      setFormData({ ...formData, engine: e.target.value })
+                    }
+                    className="mb-4 w-full p-2 border rounded text-slate-800"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Transmission"
+                    value={formData.transmission}
+                    onChange={(e) =>
+                      setFormData({ ...formData, transmission: e.target.value })
+                    }
+                    className="mb-4 w-full p-2 border rounded text-slate-800"
+                  />
+                  <select
+                    value={formData.fuelType}
+                    onChange={(e) =>
+                      setFormData({ ...formData, fuelType: e.target.value })
+                    }
+                    className="mb-4 w-full p-2 border rounded text-slate-800"
+                  >
+                    <option value="" disabled>
+                      Select Fuel Type
+                    </option>
+                    <option value="Petrol">Petrol</option>
+                    <option value="Diesel">Diesel</option>
+                    <option value="Electric">Electric</option>
+                    <option value="Hybrid">Hybrid</option>
+                    {/* Add more options as needed */}
+                  </select>
+                  <input
+                    type="text"
+                    placeholder="Exterior Color"
+                    value={formData.exteriorColor}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        exteriorColor: e.target.value,
+                      })
+                    }
+                    className="mb-4 w-full p-2 border rounded text-slate-800"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Interior Color"
+                    value={formData.interiorColor}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        interiorColor: e.target.value,
+                      })
+                    }
+                    className="mb-4 w-full p-2 border rounded text-slate-800"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Images URL"
+                    value={formData.imagesUrl}
+                    onChange={(e) =>
+                      setFormData({ ...formData, imagesUrl: e.target.value })
+                    }
+                    className="mb-4 w-full p-2 border rounded text-slate-800"
+                  />
+                  <input
+                    type="number"
+                    step="0.01"
+                    placeholder="Price"
+                    value={formData.price}
+                    onChange={(e) =>
+                      setFormData({ ...formData, price: e.target.value })
+                    }
+                    className="mb-4 w-full p-2 border rounded text-slate-800"
+                  />
+                  <textarea
+                    placeholder="Description"
+                    value={formData.description}
+                    onChange={(e) =>
+                      setFormData({ ...formData, description: e.target.value })
+                    }
+                    className="mb-4 w-full p-2 border rounded text-slate-800"
+                  ></textarea>
+                  <button
+                    type="submit"
+                    className="w-full bg-green-900 text-white p-2 rounded"
+                  >
+                    Add Car
+                  </button>
+                </form>
+              </div>
+            </div>
+          </>
         )}
       </div>
     </div>

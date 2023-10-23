@@ -116,12 +116,6 @@ function Dashboard() {
         >
           {showForm ? "Hide" : "Add Car"}
         </button>
-        <button
-          onClick={() => setShowForm(false)}
-          className="absolute top-2 right-2 text-slate-600 hover:text-slate-800 text-2xl"
-        >
-          &times;
-        </button>
 
         {showForm && (
           <>
@@ -267,9 +261,16 @@ function Dashboard() {
                   ></textarea>
                   <button
                     type="submit"
-                    className="w-full bg-green-900 text-white p-2 rounded"
+                    className="w-full bg-green-900 text-white p-2 rounded-lg"
                   >
                     Add Car
+                  </button>
+                  <button
+                    onClick={() => setShowForm(false)}
+                    type="button"
+                    className="w-full bg-red-900 text-white p-2 rounded-lg mt-3"
+                  >
+                    Cancel
                   </button>
                 </form>
               </div>

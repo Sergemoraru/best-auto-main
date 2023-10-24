@@ -1,7 +1,6 @@
 
 'use client'
 import { useState } from 'react'
-import axios from 'axios'
 import { BuildingOffice2Icon, EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
 import Footer from '../components/footer'
 import Navbar from '../components/navbar'
@@ -26,35 +25,6 @@ const [formData, setFormData] = useState({
     }));
   };
 
-  const onSubmit = async (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-
-    try {
-      const API_KEY = '131875d86e1d3d02874c0fb762417475-e5475b88-cd5a33db ';
-      const DOMAIN = 'https://api.mailgun.net/v3/sandbox1fb4cdb8fa7c475f9bf41d49886c4719.mailgun.org';
-
-      const data = {
-        from: 'mailgun@sandbox-123.mailgun.org',
-        to: 'sergemoraru@gmail.com',
-        subject: 'New Contact Form Submission',
-        text: `Name: ${formData.firstName} ${formData.lastName}\nEmail: ${formData.email}\nPhone Number: ${formData.phoneNumber}\nMessage: ${formData.message}`
-      };
-
-      // Send the email using Mailgun API
-      const response = await axios.post(`https://api.mailgun.net/v3/${DOMAIN}/messages`, data, {
-        auth: {
-          username: 'api',
-          password: API_KEY
-        }
-      });
-
-      console.log('Email sent:', response.data);
-      alert('Message sent!');
-    } catch (error) {
-      console.error('Error sending email:', error);
-      alert('Failed to send message. Please try again later.');
-    }
-  };
 
 
 
@@ -132,7 +102,7 @@ const [formData, setFormData] = useState({
                   <EnvelopeIcon className="h-7 w-6 text-gray-400" aria-hidden="true" />
                 </dt>
                 <dd>
-                  <a className="hover:text-gray-900" href="mailto:sergemoraru@gmail.com">
+                  <a className="hover:text-gray-900" href="mailto:bestautodeals@gmail.com">
                     bestautodeals@gmail.com
                   </a>
                 </dd>
@@ -154,7 +124,7 @@ const [formData, setFormData] = useState({
                     name="first-name"
                     id="first-name"
                     autoComplete="given-name"
-                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -169,7 +139,7 @@ const [formData, setFormData] = useState({
                     name="last-name"
                     id="last-name"
                     autoComplete="family-name"
-                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -184,7 +154,7 @@ const [formData, setFormData] = useState({
                     name="email"
                     id="email"
                     autoComplete="email"
-                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -199,7 +169,7 @@ const [formData, setFormData] = useState({
                     name="phone-number"
                     id="phone-number"
                     autoComplete="tel"
-                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -212,7 +182,7 @@ const [formData, setFormData] = useState({
                     name="message"
                     id="message"
                     rows={4}
-                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                     defaultValue={''}
                   />
                 </div>
@@ -220,9 +190,9 @@ const [formData, setFormData] = useState({
             </div>
             <div className="mt-8 flex justify-end">
               <button
-                onClick={onSubmit}
+                
                 type="submit"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="rounded-md bg-blue-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
               >
                 Send message
               </button>

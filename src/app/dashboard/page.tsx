@@ -1,24 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+
 import React, { useState, useEffect } from "react";
 
-function Dashboard() {
-  const [formData, setFormData] = useState({
-    year: "",
-    make: "",
-    model: "",
-    mileage: "",
-    price: "",
-    engine: "",
-    transmission: "",
-    fuelType: "",
-    exteriorColor: "",
-    interiorColor: "",
-    imagesUrl: "",
-    description: "",
-  });
-    
- type Car = {
+type Car = {
    year: number;
    make: string;
    model: string;
@@ -34,9 +19,34 @@ function Dashboard() {
    _id: string;
  };
 
+function Dashboard() {
+    
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    const response = await fetch("/api/cars", {
+    if (updateCarData) {
+      // Handle update logic here
+      try {
+        const response = await fetch(`/api/cars/${updateCarData._id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        const result = await response.json();
+        if (result.success) {
+          // Refresh the cars list or update the local state
+          alert("Car updated successfully!");
+          setUpdateCarData(null); // Reset the update state
+        } else {
+          alert("Failed to update car.");
+        }
+      } catch (error) {
+        console.error("Failed to update car:", error);
+        alert("Failed to update car.");
+      }
+    } else {
+      const response = await fetch("/api/cars", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,10 +61,41 @@ function Dashboard() {
     } else {
       alert("Failed to add car.");
     }
-  };
+  }
+}
+
+
 
   const [showForm, setShowForm] = useState(false);
   const [cars, setCars] = useState<Car[]>([]);
+  const [updateCarData, setUpdateCarData] = useState<Car | null>(null);
+  const [formData, setFormData] = useState({
+    year: "",
+    make: "",
+    model: "",
+    mileage: "",
+    price: "",
+    engine: "",
+    transmission: "",
+    fuelType: "",
+    exteriorColor: "",
+    interiorColor: "",
+    imagesUrl: "",
+    description: "",
+  });
+
+  const handleUpdate = (car: Car) => {
+    setUpdateCarData(car);
+  };
+
+  useEffect(() => {
+   if (updateCarData) {
+      setShowForm(true);
+   }
+}, [updateCarData]);
+
+
+
 
  useEffect(() => {
    const fetchCars = async () => {
@@ -71,6 +112,28 @@ function Dashboard() {
 
    fetchCars();
  }, []);
+
+
+ const handleDelete = async (carId: string) => {
+   // Call your API to delete the car from the database.
+   try {
+     const response = await fetch(`/api/cars/${carId}`, {
+       method: "DELETE",
+     });
+     const result = await response.json();
+     if (result.success) {
+       // Remove the car from the local state.
+       setCars((cars) => cars.filter((car) => car._id !== carId));
+       alert("Car deleted successfully!");
+     } else {
+       alert("Failed to delete car.");
+     }
+   } catch (error) {
+     console.error("Failed to delete car:", error);
+     alert("Failed to delete car.");
+   }
+ };
+
 
 
   return (
@@ -106,18 +169,38 @@ function Dashboard() {
               <p className="mt-2">Image: N/A</p>
             )}
             <p className="mt-2 text-gray-600">{car.description || "N/A"}</p>
+            <div className="mt-4 flex justify-between">
+              <div className="flex items-center justify-end">
+                <button
+                  onClick={() => handleUpdate(car)}
+                  className="bg-blue-500 text-white p-2 rounded mr-2"
+                >
+                  Update
+                </button>
+                <button
+                  onClick={() => handleDelete(car._id)}
+                  className="bg-red-500 text-white p-2 rounded"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
           </div>
         ))}
       </div>
       <div className="min-h-screen bg-gray-100 p-6 flex items-center justify-center">
-        <button
-          onClick={() => setShowForm(!showForm)}
-          className="absolute top-6 right-6 bg-slate-600 text-white p-2 rounded"
-        >
-          {showForm ? "Hide" : "Add Car"}
-        </button>
+       <button
+  onClick={() => {
+    setUpdateCarData(null);
+    setShowForm(!showForm);
+  }}
+  className="absolute top-6 right-6 bg-slate-600 text-white p-2 rounded"
+>
+  {showForm ? "Hide" : "Add Car"}
+</button>
 
-        {showForm && (
+
+        {showForm || updateCarData ? (
           <>
             <div className="fixed inset-0 bg-black opacity-50 z-40"></div>
             <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -259,11 +342,8 @@ function Dashboard() {
                     }
                     className="mb-4 w-full p-2 border rounded text-slate-800"
                   ></textarea>
-                  <button
-                    type="submit"
-                    className="w-full bg-green-900 text-white p-2 rounded-lg"
-                  >
-                    Add Car
+                  <button type="submit" className="w-full bg-green-900 text-white p-2 rounded-lg">
+                      {updateCarData ? 'Update Car' : 'Add Car'}
                   </button>
                   <button
                     onClick={() => setShowForm(false)}
@@ -276,7 +356,7 @@ function Dashboard() {
               </div>
             </div>
           </>
-        )}
+        ) : null}
       </div>
     </div>
   );

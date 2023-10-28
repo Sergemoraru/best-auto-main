@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import DashNav from "../components/DashNav";
 
 type Car = {
   year: number;
@@ -144,7 +145,8 @@ function Dashboard() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative pt-10">
+      <DashNav />
       <div className="car-list mt-4 space-y-4">
         {cars.map((car) => (
           <div
@@ -201,9 +203,9 @@ function Dashboard() {
             setUpdateCarData(null);
             setShowForm(!showForm);
           }}
-          className="absolute top-6 right-6 bg-slate-600 text-white p-2 rounded"
+          className="absolute top-12 right-6 bg-slate-600 text-white p-2 rounded"
         >
-          {showForm ? "Hide" : "Add Car"}
+          {showForm ? "Hide" : "Add New Car"}
         </button>
 
         {showForm || updateCarData ? (

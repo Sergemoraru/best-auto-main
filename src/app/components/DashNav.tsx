@@ -20,6 +20,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import HomeIcon from "@mui/icons-material/Home";
 import Image from "next/image";
 import Logo from "/public/images/logos/bestauto.png"
+import { UserButton } from "@clerk/nextjs";
 
 const user = {
   name: "Admin",
@@ -43,6 +44,7 @@ export default function DashNav() {
     <Disclosure as="header" className="bg-white shadow">
       {({ open }) => (
         <>
+        <UserButton />
           <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:divide-y lg:divide-gray-200 lg:px-8">
             <div className="relative flex h-16 justify-between">
               <div className="relative z-10 flex px-2 lg:px-0">
@@ -103,32 +105,6 @@ export default function DashNav() {
                   <span className="sr-only">Go Home</span>
                   <HomeIcon className="h-8 w-8" aria-hidden="true" />
                 </button>
-
-                {/* Profile dropdown */}
-                <Menu as="div" className="relative ml-4 flex-shrink-0">
-                  <div>
-                    <Menu.Button className="relative flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                      <span className="absolute -inset-1.5" />
-                      <span className="sr-only">Open user menu</span>
-                      <Image
-                        className="h-8 w-8 rounded-full"
-                        src=""
-                        alt=""
-                        width={32}
-                        height={32}
-                      />
-                    </Menu.Button>
-                  </div>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  ></Transition>
-                </Menu>
               </div>
             </div>
             <nav
@@ -190,8 +166,8 @@ export default function DashNav() {
                   className="relative ml-auto flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                   <span className="absolute -inset-1.5" />
-                  <span className="sr-only">View notifications</span>
-                  <HomeIcon className="h-6 w-6" aria-hidden="true" />
+                  <span className="sr-only">Go Home</span>
+                  <HomeIcon className="h-8 w-8" aria-hidden="true" />
                 </button>
               </div>
             </div>

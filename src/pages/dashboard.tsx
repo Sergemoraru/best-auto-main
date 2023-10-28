@@ -3,6 +3,9 @@
 
 import React, { useState, useEffect } from "react";
 import DashNav from "../app/components/DashNav";
+import { useRouter } from "next/router";
+import { useUser } from "@clerk/clerk-react";
+
 
 type Car = {
   year: number;
@@ -21,6 +24,16 @@ type Car = {
 };
 
 function Dashboard() {
+  const { user } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user) {
+      router.push("/sign-in");
+    }
+  }, [user, router]);
+
+
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (updateCarData) {

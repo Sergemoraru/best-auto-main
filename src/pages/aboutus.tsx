@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
 import {
@@ -10,6 +11,8 @@ import {
 } from "@heroicons/react/20/solid";
 import Footer from "../app/components/footer";
 import Navbar from "../app/components/navbar";
+import aboutus1 from "/public/images/aboutus1.png";
+import Image from "next/image";
 
 const values = [
   {
@@ -74,16 +77,14 @@ export default function About() {
         </div>
 
         {/* Header section */}
-        <div className="px-6 pt-14 lg:px-8">
+        <div className="px-6 lg:px-8">
           <div className="mx-auto max-w-2xl pt-24 text-center sm:pt-40">
-            <h2 className="text-4xl font-bold tracking-tight text-blue-800 sm:text-6xl">
+            <h2 className="text-4xl font-bold tracking-tight text-sky-800 sm:text-6xl">
               About Us
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-              lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-              fugiat aliqua.
-            </p>
+            <h3 className="mt-6 text-xl leading-8 text-gray-600 font-semibold">
+              Meet the Heart Behind the Wheels
+            </h3>
           </div>
         </div>
 
@@ -93,33 +94,53 @@ export default function About() {
             <div className="grid max-w-xl grid-cols-1 gap-8 text-base leading-7 text-gray-600 lg:max-w-none lg:grid-cols-2">
               <div>
                 <p>
-                  Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget
-                  risus enim. Mattis mauris semper sed amet vitae sed turpis id.
-                  Id dolor praesent donec est. Odio penatibus risus viverra
-                  tellus varius sit neque erat velit. Faucibus commodo massa
-                  rhoncus, volutpat. Dignissim sed eget risus enim. Mattis
-                  mauris semper sed amet vitae sed turpis id.
+                  <span className="font-bold text-sky-700">
+                    A Passion for Cars
+                  </span>
+                  <br />
+                  Ever since I could remember, cars have been more than just
+                  vehicles to me; they've been a lifelong passion. My earliest
+                  memories are filled with the hum of engines and the shimmer of
+                  polished paint. This love for cars led me to establish this
+                  dealership, bringing quality and reliability to every
+                  customer.
                 </p>
                 <p className="mt-8">
-                  Et vitae blandit facilisi magna lacus commodo. Vitae sapien
-                  duis odio id et. Id blandit molestie auctor fermentum
-                  dignissim. Lacus diam tincidunt ac cursus in vel. Mauris
-                  varius vulputate et ultrices hac adipiscing egestas.
+                  <span className="font-bold text-sky-700">
+                    Commitment to Quality Quality
+                  </span>
+                  <br />
+                  Commitment to Quality Quality isn't just a word—it's a
+                  promise. From the vehicles we source to the parts we sell,
+                  every item that passes through our doors meets the highest
+                  standards. Our meticulous approach ensures that our customers
+                  drive away with not just a car, but a companion for the road
+                  ahead.
                 </p>
               </div>
               <div>
                 <p>
-                  Erat pellentesque dictumst ligula porttitor risus eget et
-                  eget. Ultricies tellus felis id dignissim eget. Est augue
-                  maecenas risus nulla ultrices congue nunc tortor. Enim et
-                  nesciunt doloremque nesciunt voluptate.
+                  <span className="font-bold text-sky-700">
+                    Building Trust, One Deal at a Time
+                  </span>
+                  <br />
+                  In this industry, trust is everything. We believe in
+                  transparency, honesty, and integrity in every deal. Our
+                  customers know that when they come to us, they're not just
+                  making a purchase—they're joining a community that values and
+                  supports them.
                 </p>
                 <p className="mt-8">
-                  Et vitae blandit facilisi magna lacus commodo. Vitae sapien
-                  duis odio id et. Id blandit molestie auctor fermentum
-                  dignissim. Lacus diam tincidunt ac cursus in vel. Mauris
-                  varius vulputate et ultrices hac adipiscing egestas. Iaculis
-                  convallis ac tempor et ut. Ac lorem vel integer orci.
+                  <span className="font-bold text-sky-700">
+                    Forging Lasting Relationships
+                  </span>
+                  <br />
+                  Beyond transactions and trades, what truly drives us is the
+                  relationships we build with our customers. We value the
+                  personal connections and the stories shared, ensuring that
+                  each individual feels valued and understood. For us, it's not
+                  just about cars—it's about the community and the bonds we
+                  create.
                 </p>
               </div>
             </div>
@@ -129,10 +150,13 @@ export default function About() {
 
         {/* Image section */}
         <div className="mt-32 sm:mt-40 xl:mx-auto xl:max-w-7xl xl:px-8">
-          <img
-            src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2894&q=80"
-            alt=""
-            className="aspect-[9/4] w-full object-cover xl:rounded-3xl"
+          <Image
+            src={aboutus1}
+            alt="About us image"
+            className="aspect-[9/4] px-40 w-full h-auto xl:rounded-3xl"
+            placeholder="blur"
+            height={1200}
+            width={800}
           />
         </div>
 

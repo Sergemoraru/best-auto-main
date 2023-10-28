@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import DashNav from "../../app/components/DashNav";
+import DashNav from "../app/components/DashNav";
 
 type Car = {
   year: number;

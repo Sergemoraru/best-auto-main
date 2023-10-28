@@ -8,44 +8,44 @@ import {
   SunIcon,
   UserGroupIcon,
 } from "@heroicons/react/20/solid";
-import Footer from "../../app/components/footer";
-import Navbar from "../../app/components/navbar";
+import Footer from "../app/components/footer";
+import Navbar from "../app/components/navbar";
 
 const values = [
   {
-    name: "Be world-class.",
+    name: "Innovative Solutions.",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit aute id magna.",
+      "In a rapidly changing automotive landscape, we stay ahead by adopting innovative solutions and technologies, ensuring our customers have access to the latest and most efficient options available.",
     icon: RocketLaunchIcon,
   },
   {
-    name: "Take responsibility.",
+    name: "Quality Assurance.",
     description:
-      "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.",
+      "Every car and part we sell undergoes a rigorous inspection, ensuring our customers receive only the best, safe, and reliable products.",
     icon: HandRaisedIcon,
   },
   {
-    name: "Be supportive.",
+    name: "Customer-Centric.",
     description:
-      "Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus voluptas blanditiis et.",
+      "Our customers are our top priority. We strive to understand their needs and exceed their expectations, fostering long-lasting relationships.",
     icon: UserGroupIcon,
   },
   {
-    name: "Always learning.",
+    name: "Continuous Improvement",
     description:
-      "Iure sed ab. Aperiam optio placeat dolor facere. Officiis pariatur eveniet atque et dolor.",
+      "The automotive world is ever-evolving, and so are we. We continually seek to improve our services, products, and knowledge to serve our customers better.",
     icon: AcademicCapIcon,
   },
   {
-    name: "Share everything you know.",
+    name: "Integrity.",
     description:
-      "Laudantium tempora sint ut consectetur ratione. Ut illum ut rem numquam fuga delectus.",
+      "We believe in honest dealings and transparent transactions, ensuring our customers can trust us every step of the way.",
     icon: SparklesIcon,
   },
   {
-    name: "Enjoy downtime.",
+    name: "Reliability.",
     description:
-      "Culpa dolorem voluptatem velit autem rerum qui et corrupti. Quibusdam quo placeat.",
+      "We understand the importance of dependable vehicles and parts in our customers' lives. Every product we offer is tested and vetted for maximum reliability and longevity.",
     icon: SunIcon,
   },
 ];
@@ -76,10 +76,10 @@ export default function About() {
         {/* Header section */}
         <div className="px-6 pt-14 lg:px-8">
           <div className="mx-auto max-w-2xl pt-24 text-center sm:pt-40">
-            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+            <h2 className="text-4xl font-bold tracking-tight text-blue-800 sm:text-6xl">
               About Us
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-300">
+            <p className="mt-6 text-lg leading-8 text-gray-600">
               Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
               lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
               fugiat aliqua.
@@ -90,7 +90,7 @@ export default function About() {
         {/* Content section */}
         <div className="mx-auto mt-20 max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-            <div className="grid max-w-xl grid-cols-1 gap-8 text-base leading-7 text-gray-300 lg:max-w-none lg:grid-cols-2">
+            <div className="grid max-w-xl grid-cols-1 gap-8 text-base leading-7 text-gray-600 lg:max-w-none lg:grid-cols-2">
               <div>
                 <p>
                   Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget
@@ -139,21 +139,16 @@ export default function About() {
         {/* Values section */}
         <div className="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Our values
+            <h2 className="text-3xl font-bold tracking-tight text-blue-800 sm:text-4xl">
+              Our Core Values
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-300">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores
-              impedit perferendis suscipit eaque, iste dolor cupiditate
-              blanditiis.
-            </p>
           </div>
-          <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 text-base leading-7 text-gray-300 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:gap-x-16">
+          <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 text-base leading-7 text-slate-500 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:gap-x-16">
             {values.map((value) => (
               <div key={value.name} className="relative pl-9">
-                <dt className="inline font-semibold text-white">
+                <dt className="inline font-semibold text-stone-600">
                   <value.icon
-                    className="absolute left-1 top-1 h-5 w-5 text-indigo-500"
+                    className="absolute left-1 top-1 h-5 w-5 text-sky-700"
                     aria-hidden="true"
                   />
                   {value.name}

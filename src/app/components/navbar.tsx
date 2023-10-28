@@ -7,6 +7,7 @@ import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ')
@@ -46,7 +47,7 @@ export default function Navbar() {
                 </div>
                 <div className="hidden lg:ml-6 lg:flex lg:space-x-8  ">
                   {/*              Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
-                  <a
+                  <Link
                     href="/"
                     className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${
                       isActive("/")
@@ -55,8 +56,8 @@ export default function Navbar() {
                     }`}
                   >
                     Home
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/current"
                     className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${
                       isActive("/current")
@@ -65,26 +66,58 @@ export default function Navbar() {
                     }`}
                   >
                     Current Listings
-                  </a>
+                  </Link>
 
-                  <a
+                  <Link
                     href="/sold"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${
+                      isActive("/sold")
+                        ? "border-zinc-500 text-gray-900"
+                        : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    }`}
                   >
                     Sold Listings
-                  </a>
-                  <a
+                  </Link>
+                  <Link
+                    href="/parts"
+                    className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${
+                      isActive("/parts")
+                        ? "border-zinc-500 text-gray-900"
+                        : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    }`}
+                  >
+                    Parts
+                  </Link>
+                  <Link
                     href="/faq"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${
+                      isActive("/faq")
+                        ? "border-zinc-500 text-gray-900"
+                        : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    }`}
                   >
                     FAQ
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/contact"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${
+                      isActive("/contact")
+                        ? "border-zinc-500 text-gray-900"
+                        : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    }`}
                   >
                     Contact
-                  </a>
+                  </Link>
+                  <Link
+                    href="/aboutus"
+                    className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${
+                      isActive("/aboutus")
+                        ? "border-zinc-500 text-gray-900"
+                        : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    }`}
+                  >
+                    About Us
+                  </Link>
                 </div>
               </div>
               <div className="flex items-center lg:hidden">

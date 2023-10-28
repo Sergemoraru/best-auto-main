@@ -2,8 +2,8 @@
 'use client'
 import { useState } from 'react'
 import { BuildingOffice2Icon, EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
-import Footer from '../../app/components/footer'
-import Navbar from '../../app/components/navbar'
+import Footer from '../app/components/footer'
+import Navbar from '../app/components/navbar'
 
 
 

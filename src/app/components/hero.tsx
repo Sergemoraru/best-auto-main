@@ -3,8 +3,6 @@
 "use client"
 
 import { useState }  from 'react'
-import { Dialog } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 
 
@@ -73,13 +71,13 @@ export default function Hero() {
                   </p>
                   <div className="mt-10 flex items-center gap-x-6">
                     <a
-                      href="#"
+                      href="/current"
                       className="rounded-md bg-zinc-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-zinc-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-600"
                     >
                       Current Listings
                     </a>
                     <a
-                      href="#"
+                      href="/parts"
                       className="rounded-md px-3.5 py-2.5 text-sm font-semibold bg-zinc-200 shadow-sm hover:bg-zinc-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-400 leading-6 text-gray-900"
                     >
                       Used Parts <span aria-hidden="true">→</span>
@@ -95,6 +93,7 @@ export default function Hero() {
                         src="/images/heroimages/car-mechanic-customer-shaking-hands.jpg"
                         alt=""
                         className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                        loading="eager"
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                     </div>
@@ -107,6 +106,7 @@ export default function Hero() {
                         src="/images/heroimages/closeup-shot-machine-with-racks-pinions-factory.jpg"
                         alt=""
                         className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                        loading="eager"
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                     </div>
@@ -117,6 +117,7 @@ export default function Hero() {
                         src="/images/heroimages/different-type-tools-especially-wrenches-are-hanging-wall-workshop.jpg"
                         alt=""
                         className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                        loading="eager"
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                     </div>
@@ -139,6 +140,7 @@ export default function Hero() {
                         src="/images/heroimages/muscular-car-service-worker-repairing-vehicle.jpg"
                         alt=""
                         className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                        loading="eager"
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                     </div>

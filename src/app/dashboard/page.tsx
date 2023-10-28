@@ -84,19 +84,6 @@ function Dashboard() {
     description: "",
   });
 
-  const handleUpdate = (car: Car) => {
-    setUpdateCarData(car);
-  };
-
-  useEffect(() => {
-   if (updateCarData) {
-      setShowForm(true);
-   }
-}, [updateCarData]);
-
-
-
-
  useEffect(() => {
    const fetchCars = async () => {
      try {
@@ -113,27 +100,52 @@ function Dashboard() {
    fetchCars();
  }, []);
 
+   const handleUpdate = (car: Car) => {
+     setUpdateCarData(car);
+     setFormData({
+       year: car.year.toString(),
+       make: car.make,
+       model: car.model,
+       mileage: car.mileage,
+       price: car.price.toString(),
+       engine: car.engine,
+       transmission: car.transmission,
+       fuelType: car.fuelType,
+       exteriorColor: car.exteriorColor,
+       interiorColor: car.interiorColor,
+       imagesUrl: car.imagesUrl,
+       description: car.description,
+     });
+   };
+
+   useEffect(() => {
+     if (updateCarData) {
+       setShowForm(true);
+     }
+   }, [updateCarData]);
+
 
  const handleDelete = async (carId: string) => {
    // Call your API to delete the car from the database.
    try {
-     const response = await fetch(`/api/cars/${carId}`, {
-       method: "DELETE",
-     });
-     const result = await response.json();
-     if (result.success) {
-       // Remove the car from the local state.
-       setCars((cars) => cars.filter((car) => car._id !== carId));
-       alert("Car deleted successfully!");
-     } else {
-       alert("Failed to delete car.");
-     }
-   } catch (error) {
-     console.error("Failed to delete car:", error);
-     alert("Failed to delete car.");
+      const response = await fetch(`/api/cars/${carId}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        throw new Error("Failed to delete car.");
    }
- };
-
+    const result = await response.json();
+    if (result.success) {
+      // Refresh the cars list or update the local state
+      alert("Car deleted successfully!");
+    } else {
+      alert("Failed to delete car.");
+    }
+  } catch (error) {
+    console.error("Failed to delete car:", error);
+    alert("Failed to delete car.");
+  }
+}
 
 
   return (
@@ -346,7 +358,7 @@ function Dashboard() {
                       {updateCarData ? 'Update Car' : 'Add Car'}
                   </button>
                   <button
-                    onClick={() => setShowForm(false)}
+                    onClick={() => {setShowForm(false); setUpdateCarData(null);}}
                     type="button"
                     className="w-full bg-red-900 text-white p-2 rounded-lg mt-3"
                   >

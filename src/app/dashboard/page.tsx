@@ -4,23 +4,22 @@
 import React, { useState, useEffect } from "react";
 
 type Car = {
-   year: number;
-   make: string;
-   model: string;
-   mileage: string;
-   price: number;
-   engine: string;
-   transmission: string;
-   fuelType: string;
-   exteriorColor: string;
-   interiorColor: string;
-   imagesUrl: string;
-   description: string;
-   _id: string;
- };
+  year: number;
+  make: string;
+  model: string;
+  mileage: string;
+  price: number;
+  engine: string;
+  transmission: string;
+  fuelType: string;
+  exteriorColor: string;
+  interiorColor: string;
+  imagesUrl: string;
+  description: string;
+  _id: string;
+};
 
 function Dashboard() {
-    
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (updateCarData) {
@@ -47,24 +46,22 @@ function Dashboard() {
       }
     } else {
       const response = await fetch("/api/cars", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    const data = await response.json();
-    if (data.success) {
-      alert("Car added successfully!");
-      // Reset form or navigate somewhere else
-    } else {
-      alert("Failed to add car.");
+      const data = await response.json();
+      if (data.success) {
+        alert("Car added successfully!");
+        // Reset form or navigate somewhere else
+      } else {
+        alert("Failed to add car.");
+      }
     }
-  }
-}
-
-
+  };
 
   const [showForm, setShowForm] = useState(false);
   const [cars, setCars] = useState<Car[]>([]);
@@ -84,69 +81,67 @@ function Dashboard() {
     description: "",
   });
 
- useEffect(() => {
-   const fetchCars = async () => {
-     try {
-       const response = await fetch("/api/cars");
-       const result = await response.json();
-       if (response.ok) {
-         setCars(result.data);
-       }
-     } catch (error) {
-       console.error("Failed to fetch cars:", error);
-     }
-   };
+  useEffect(() => {
+    const fetchCars = async () => {
+      try {
+        const response = await fetch("/api/cars");
+        const result = await response.json();
+        if (response.ok) {
+          setCars(result.data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch cars:", error);
+      }
+    };
 
-   fetchCars();
- }, []);
+    fetchCars();
+  }, []);
 
-   const handleUpdate = (car: Car) => {
-     setUpdateCarData(car);
-     setFormData({
-       year: car.year.toString(),
-       make: car.make,
-       model: car.model,
-       mileage: car.mileage,
-       price: car.price.toString(),
-       engine: car.engine,
-       transmission: car.transmission,
-       fuelType: car.fuelType,
-       exteriorColor: car.exteriorColor,
-       interiorColor: car.interiorColor,
-       imagesUrl: car.imagesUrl,
-       description: car.description,
-     });
-   };
+  const handleUpdate = (car: Car) => {
+    setUpdateCarData(car);
+    setFormData({
+      year: car.year.toString(),
+      make: car.make,
+      model: car.model,
+      mileage: car.mileage,
+      price: car.price.toString(),
+      engine: car.engine,
+      transmission: car.transmission,
+      fuelType: car.fuelType,
+      exteriorColor: car.exteriorColor,
+      interiorColor: car.interiorColor,
+      imagesUrl: car.imagesUrl,
+      description: car.description,
+    });
+  };
 
-   useEffect(() => {
-     if (updateCarData) {
-       setShowForm(true);
-     }
-   }, [updateCarData]);
+  useEffect(() => {
+    if (updateCarData) {
+      setShowForm(true);
+    }
+  }, [updateCarData]);
 
-
- const handleDelete = async (carId: string) => {
-   // Call your API to delete the car from the database.
-   try {
+  const handleDelete = async (carId: string) => {
+    // Call your API to delete the car from the database.
+    try {
       const response = await fetch(`/api/cars/${carId}`, {
         method: "DELETE",
       });
       if (!response.ok) {
         throw new Error("Failed to delete car.");
-   }
-    const result = await response.json();
-    if (result.success) {
-      // Refresh the cars list or update the local state
-      alert("Car deleted successfully!");
-    } else {
+      }
+      const result = await response.json();
+      if (result.success) {
+        // Refresh the cars list or update the local state
+        alert("Car deleted successfully!");
+      } else {
+        alert("Failed to delete car.");
+      }
+    } catch (error) {
+      console.error("Failed to delete car:", error);
       alert("Failed to delete car.");
     }
-  } catch (error) {
-    console.error("Failed to delete car:", error);
-    alert("Failed to delete car.");
-  }
-}
-
+  };
 
   return (
     <div className="relative">
@@ -201,16 +196,15 @@ function Dashboard() {
         ))}
       </div>
       <div className="min-h-screen bg-gray-100 p-6 flex items-center justify-center">
-       <button
-  onClick={() => {
-    setUpdateCarData(null);
-    setShowForm(!showForm);
-  }}
-  className="absolute top-6 right-6 bg-slate-600 text-white p-2 rounded"
->
-  {showForm ? "Hide" : "Add Car"}
-</button>
-
+        <button
+          onClick={() => {
+            setUpdateCarData(null);
+            setShowForm(!showForm);
+          }}
+          className="absolute top-6 right-6 bg-slate-600 text-white p-2 rounded"
+        >
+          {showForm ? "Hide" : "Add Car"}
+        </button>
 
         {showForm || updateCarData ? (
           <>
@@ -297,7 +291,7 @@ function Dashboard() {
                     <option value="" disabled>
                       Select Fuel Type
                     </option>
-                    <option value="Petrol">Petrol</option>
+                    <option value="Petrol">Gas</option>
                     <option value="Diesel">Diesel</option>
                     <option value="Electric">Electric</option>
                     <option value="Hybrid">Hybrid</option>
@@ -354,11 +348,17 @@ function Dashboard() {
                     }
                     className="mb-4 w-full p-2 border rounded text-slate-800"
                   ></textarea>
-                  <button type="submit" className="w-full bg-green-900 text-white p-2 rounded-lg">
-                      {updateCarData ? 'Update Car' : 'Add Car'}
+                  <button
+                    type="submit"
+                    className="w-full bg-green-900 text-white p-2 rounded-lg"
+                  >
+                    {updateCarData ? "Update Car" : "Add Car"}
                   </button>
                   <button
-                    onClick={() => {setShowForm(false); setUpdateCarData(null);}}
+                    onClick={() => {
+                      setShowForm(false);
+                      setUpdateCarData(null);
+                    }}
                     type="button"
                     className="w-full bg-red-900 text-white p-2 rounded-lg mt-3"
                   >
@@ -373,6 +373,5 @@ function Dashboard() {
     </div>
   );
 }
-
 
 export default Dashboard;

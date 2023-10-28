@@ -3,19 +3,26 @@
 "use client"
 
 import React from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import Link from 'next/link';
+import { Disclosure } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
-function classNames(...classes) {
+function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(' ')
 }
 
 
 export default function Navbar() {
+
+  const router = useRouter();
+
+  const isActive = (href: string) => {
+    return router.pathname === href;
+  }
+
   return (
-    <Disclosure as="nav" className="bg-white shadow">
+    <Disclosure as="nav" className="bg-white shadow pt-10">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
@@ -41,13 +48,21 @@ export default function Navbar() {
                   {/*              Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
                   <a
                     href="/"
-                    className="inline-flex items-center border-b-2 active:border-zinc-500 active:text-gray-900 border-transparent hover:border-gray-300 border-zinc-500 px-1 pt-1 text-sm font-medium text-gray-500"
+                    className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${
+                      isActive("/")
+                        ? "border-zinc-500 text-gray-900"
+                        : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    }`}
                   >
                     Home
                   </a>
                   <a
                     href="/current"
-                    className="inline-flex items-center border-b-2  px-1 pt-1 active:border-zinc-500 active:text-gray-900 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${
+                      isActive("/current")
+                        ? "border-zinc-500 text-gray-900"
+                        : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    }`}
                   >
                     Current Listings
                   </a>

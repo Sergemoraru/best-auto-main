@@ -2,8 +2,8 @@
 import React from "react"
 import { Disclosure } from '@headlessui/react'
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/outline'
-import Footer from "../components/footer";
-import Navbar from "../components/navbar";
+import Footer from "../../app/components/footer";
+import Navbar from "../../app/components/navbar";
 
 
 const faqs = [

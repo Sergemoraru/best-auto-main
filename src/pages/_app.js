@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
-import "../styles/globals.css"; // Import your global styles
+import "../app/styles/globals.css"; // Import your global styles
 
 function MyApp({ Component, pageProps }) {
   // Set the app element for accessibility

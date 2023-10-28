@@ -1,8 +1,8 @@
 import React from 'react';
-import MainFooter from './components/footer';
-import Navbar from './components/navbar';
+import MainFooter from '../app/components/footer';
+import Navbar from '../app/components/navbar';
 import SoldRecent from './sold/soldRecent/page';
-import Hero from './components/hero';
+import Hero from '../app/components/hero';
 
 
 export default function Home() {

@@ -8,8 +8,8 @@ import {
   SunIcon,
   UserGroupIcon,
 } from "@heroicons/react/20/solid";
-import Footer from "../components/footer";
-import Navbar from "../components/navbar";
+import Footer from "../../app/components/footer";
+import Navbar from "../../app/components/navbar";
 
 const values = [
   {

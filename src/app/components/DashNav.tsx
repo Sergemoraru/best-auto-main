@@ -1,26 +1,9 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-
-*/
-import { Fragment } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { Disclosure } from "@headlessui/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import HomeIcon from "@mui/icons-material/Home";
 import Image from "next/image";
 import Logo from "/public/images/logos/bestauto.png"
-import { UserButton } from "@clerk/nextjs";
 
 const user = {
   name: "Admin",
@@ -44,7 +27,6 @@ export default function DashNav() {
     <Disclosure as="header" className="bg-white shadow">
       {({ open }) => (
         <>
-        <UserButton />
           <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:divide-y lg:divide-gray-200 lg:px-8">
             <div className="relative flex h-16 justify-between">
               <div className="relative z-10 flex px-2 lg:px-0">

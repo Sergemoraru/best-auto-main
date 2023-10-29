@@ -1,17 +1,17 @@
 import React from "react";
 import Modal from "react-modal";
 import "../app/styles/globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
 import type { AppProps } from "next/app";
+import { AuthProvider } from "../contexts/auth-provider"
 
 function MyApp({ Component, pageProps }: AppProps) {
   
   Modal.setAppElement("#__next"); 
 
   return (
-    <ClerkProvider {...pageProps} > 
+    <AuthProvider> 
       <Component {...pageProps} />;
-    </ClerkProvider>
+    </AuthProvider>
   ); 
 }
 

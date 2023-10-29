@@ -3,8 +3,8 @@
 
 import React, { useState, useEffect } from "react";
 import DashNav from "../app/components/DashNav";
-import { useRouter } from "next/router";
-import { useUser } from "@clerk/clerk-react";
+import { useAuth } from "../contexts/auth-context";
+import Link from "next/link";
 
 
 type Car = {
@@ -24,15 +24,8 @@ type Car = {
 };
 
 function Dashboard() {
-  const { user } = useUser();
-  const router = useRouter();
 
-  useEffect(() => {
-    if (!user) {
-      router.push("/sign-in");
-    }
-  }, [user, router]);
-
+  const { user, login, logout } = useAuth();
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -156,6 +149,8 @@ function Dashboard() {
       alert("Failed to delete car.");
     }
   };
+
+<Link href="/api/auth/login">Login</Link>;
 
   return (
     <div className="relative pt-10">
